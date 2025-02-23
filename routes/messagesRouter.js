@@ -11,7 +11,11 @@ formRouter.get("/", (req, res) => {
 formRouter.post("/", (req, res) => {
     const body = req.body;
     console.log("Body params", body.text, body.user);
-    messages.push({text: body.text, user: body.user, added: new Date()});
+    messages.push({
+        text: body.text,
+        user: body.user,
+        added: `${new Date().getDate()}-${months[new Date().getUTCMonth()]}-${new Date().getFullYear()}`
+    });
     res.redirect("/");
 });
 
@@ -27,7 +31,7 @@ function makeUser(length) {
     return result;
 }
 
-const months=["Jan", "Feb","March", "April", "May", "June", "July", "Sept", "Oct", "Nov", "Dec"];
+const months = ["Jan", "Feb", "March", "April", "May", "June", "July", "Sept", "Oct", "Nov", "Dec"];
 
 for (let i = 0; i < 5; i++) {
     const message = {
