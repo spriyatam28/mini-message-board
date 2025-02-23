@@ -10,7 +10,7 @@ formRouter.get("/", (req, res) => {
 
 formRouter.post("/", (req, res) => {
     const body = req.body;
-    console.log("Body params",body.text, body.user);
+    console.log("Body params", body.text, body.user);
     messages.push({text: body.text, user: body.user, added: new Date()});
     res.redirect("/");
 });
@@ -27,8 +27,14 @@ function makeUser(length) {
     return result;
 }
 
+const months=["Jan", "Feb","March", "April", "May", "June", "July", "Sept", "Oct", "Nov", "Dec"];
+
 for (let i = 0; i < 5; i++) {
-    const message = {text: `Hi, there ${i + 1}`, user: `${makeUser(7)}`, added: new Date()};
+    const message = {
+        text: `Hi, there ${i + 1}`,
+        user: `${makeUser(7)}`,
+        added: `${new Date().getDate()}-${months[new Date().getUTCMonth()]}-${new Date().getFullYear()}`
+    };
     messages.push(message);
 }
 
